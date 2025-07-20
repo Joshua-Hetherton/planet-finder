@@ -44,7 +44,7 @@ def main():
             # Add Linux-specific code here
         case "windows":
             print("Running on Windows")
-
+            ui_dekstop.create_ui()
 
 
             
