@@ -1,5 +1,5 @@
 import customtkinter as ctk
-import planet_position
+import planet_api
 
 
 
