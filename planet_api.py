@@ -1,4 +1,8 @@
 from skyfield.api import *
+from skyfield import *
+from datetime import timedelta
+from skyfield import almanac
+from skyfield.magnitudelib import planetary_magnitude
 
 def get_coordinates():
     """
@@ -13,7 +17,7 @@ def get_coordinates():
         return NotImplementedError("Not Yet Implemented")
     
 
-def get_planet_position(planet_name, ts, lat, lon, planets):
+def get_planet_position(planet_name, ts, lat, lon, eph):
     """
     Calculates the current altitude, azimuth, and distance of a planet
     as observed from a specific location on Earth at the current time.
@@ -25,10 +29,10 @@ def get_planet_position(planet_name, ts, lat, lon, planets):
 
     #Set the observers location as earth
     #Give their lat and lon position
-    observer=planets["earth"]+ wgs84.latlon(latitude_degrees = lat, longitude_degrees = lon)
+    observer=eph["earth"]+ wgs84.latlon(latitude_degrees = lat, longitude_degrees = lon)
 
     #Sets the selected planet
-    planet = planets[planet_name.lower()]
+    planet = eph[planet_name.lower()]
 
     #Calculates the position of the planet
     astrometric = observer.at(time).observe(planet)
@@ -41,7 +45,7 @@ def get_planet_position(planet_name, ts, lat, lon, planets):
 
     return alt.degrees, az.degrees, distance.km
 
-def get_visible_planets(lat, lon, ts, planets):
+def get_visible_planets(lat, lon, ts, eph):
     """
     Returns a list of planets currently above the horizon 
     from the user's location.
@@ -49,8 +53,11 @@ def get_visible_planets(lat, lon, ts, planets):
     try:
 
         planets_visible={}
+
+        #Change in the future to allow the user to select a range of planets to show.
+        #E.g Viewing Asteroids, Star clusters, etc.
         for planet in ["mercury", "venus", "moon", "mars", "jupiter", "saturn", "uranus", "neptune"]:
-            alt, az, distance = get_planet_position(planet, ts, lat, lon, planets)
+            alt, az, distance = get_planet_position(planet, ts, lat, lon, eph)
 
             if az>0:
                 
@@ -67,14 +74,35 @@ def get_visible_planets(lat, lon, ts, planets):
         return Exception("A problem occured while finding visible planets above your horizon")
 
 
-def view_planet(planet_name):
+def view_planet(planet_name, ts, eph, lat, lon):
     """
     Returns key astronomical info for the given planet 
-    (distance, azimuth, visibility, etc.).
-    """
-    
+    It returns:
+        Planet Rising and Setting times
+        Visible Magnitude (How visible it is from where you are)
+        Altitude
+        Azimuth
+        Distance
 
-    return NotImplementedError("Not Yet Implemented")
+    """
+    observer=eph["earth"]+ wgs84.latlon(latitude_degrees = lat, longitude_degrees = lon)
+    
+    #Rising and Setting
+    time = ts.now()
+    time1 = ts.utc(time.utc_datetime() + timedelta(days=1))
+
+    planet_rise_set=almanac.risings_and_settings(observer, eph[f'{planet_name.lower()}'], time, time1)
+
+    #Apparent Magnitude (How visible it is from where you are)
+
+    astrometric = eph['earth'].at(time).observe(eph[f'{planet_name.lower()}'])
+
+    magnitude=planetary_magnitude(astrometric)
+
+    #Azimuth, Altitude and Distance
+    alt, az, distance = get_planet_position(planet_name, ts, lat, lon, eph)
+
+    return planet_rise_set,magnitude, alt, az, distance
 
 def get_apo_peri_apsis():
     """
@@ -95,5 +123,6 @@ def load_planetary_data():
     planets = eph                # Planets accessed directly from eph
     ts = load.timescale()        # Load timescale for time calculations
     return eph, planets, ts
+
 
 
