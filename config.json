@@ -1,5 +1,5 @@
 {
     "MODE": "windows",
-    "LATITUDE": 0,
-    "LONGITUDE": 0
+    "LATITUDE": "0",
+    "LONGITUDE": "0"
 }

@@ -1,15 +1,17 @@
 from skyfield.api import *
 from skyfield import *
-from datetime import timedelta
 from skyfield import almanac
 from skyfield.magnitudelib import planetary_magnitude
 
+from datetime import timedelta
+
 def get_coordinates():
+    
     """
     Attempts to get the user's current latitude and longitude. 
     Falls back to defaults if unavailable.
     """
-
+    wgs84.latlon(latitude_degrees = lat, longitude_degrees = lon)
     try:
         return NotImplementedError("Not Yet Implemented")
     
