@@ -1,5 +1,5 @@
 import customtkinter as ctk
-import planet_api
+from planet_api import *
 from loading_json import *
 import tkinter.messagebox
 
@@ -14,7 +14,42 @@ def configure_grid_layout(widget, rows, columns):
 def show_frame(frame):
     frame.tkraise()
 
+"""
+With the Planet API, I could split it all up:
+Planets:
+    Mecury
+    Venus
+    Earth
+    Mars
+    Juipter
+    Saturn
+    Uranus
+    Neptune
+Dwarf Planets
+    Pluto
+    Ceres
+    Haumea
+    Eris
+Natural Satellites
+    Moon (Earth)
+    Europa, Ganymede, Io, Callisto (Jupiter)
+    Titan, Enceladus (Saturn)
+    Triton (Neptune)
+Minor Bodies
+    Asteroids
+    Comets
+    Meteroirds
+Deep Sky Objects:
+    Stars
+    Star Clusters
+    Nebulae
+    Galaxies
+Artifical Objects(Satellites)
+    ISS
+    Prominent Satellites
+    Search By Name
 
+"""
 def show_menu_frame(container):
 
     #Setting Up Frame
@@ -24,9 +59,15 @@ def show_menu_frame(container):
     configure_grid_layout(main_frame, 10, 10)
     show_frame(main_frame)
 
-    #Main Menu Buttons
+    #Settings button
     show_settings=ctk.CTkButton(main_frame, text="Show Settings",command=lambda: show_settings_frame(container))
     show_settings.grid(row=10,column=0,stick="w")
+
+
+    ##Loading the ephemeris (positions), ts
+    eph,ts = load_planetary_data()
+
+    # All planet_api Buttons
 
 def save_settings():
 
@@ -77,7 +118,7 @@ def show_settings_frame(container):
         save_settings_button.grid(row=50,column=1,sticky="w")
     except:
         tkinter.messagebox.showerror("Error", "Probelm Saving JSON config")
-        
+
 
     def save_settings(entries, original_config):
         new_config={}
@@ -88,7 +129,8 @@ def show_settings_frame(container):
                 new_config[key]=entry.get()
         save_json("config.json",new_config)
 
-    
+
+def 
     
         
         

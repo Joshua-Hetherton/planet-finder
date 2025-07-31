@@ -15,6 +15,7 @@ It is built using 'customtkinter' for the user-interface, and uses the [Skyfield
 ### Planned Features
 - Orbital data such as apoapsis and periapsis estimations, which isn't native to the Skyfield API
 - Allowing greater functionality to viewing selected objects, as planets are only being tracked right now
+- In the far future, and if I am confident enough, making a map of the milky way!
 ## Pi Version
 To be Implemented
 

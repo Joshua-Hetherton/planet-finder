@@ -11,7 +11,7 @@ def get_coordinates():
     Attempts to get the user's current latitude and longitude. 
     Falls back to defaults if unavailable.
     """
-    wgs84.latlon(latitude_degrees = lat, longitude_degrees = lon)
+    
     try:
         return NotImplementedError("Not Yet Implemented")
     
@@ -122,9 +122,9 @@ def load_planetary_data():
     #de421.bsp is used by NASA's JPL to calculate where any planet is at any given time
 
     eph = load('de421.bsp')      # Load planetary ephemeris data
-    planets = eph                # Planets accessed directly from eph
     ts = load.timescale()        # Load timescale for time calculations
-    return eph, planets, ts
+    
+    return eph, ts
 
 
 
