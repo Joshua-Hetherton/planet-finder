@@ -25,25 +25,30 @@ Planets:
     Saturn
     Uranus
     Neptune
+
 Dwarf Planets
     Pluto
     Ceres
     Haumea
     Eris
+
 Natural Satellites
     Moon (Earth)
     Europa, Ganymede, Io, Callisto (Jupiter)
     Titan, Enceladus (Saturn)
     Triton (Neptune)
+
 Minor Bodies
     Asteroids
     Comets
-    Meteroirds
+    Meteoroids
+    
 Deep Sky Objects:
     Stars
     Star Clusters
     Nebulae
     Galaxies
+
 Artifical Objects(Satellites)
     ISS
     Prominent Satellites
