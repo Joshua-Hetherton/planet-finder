@@ -1,7 +1,10 @@
 import customtkinter as ctk
 from planet_api import *
-from loading_json import *
 import tkinter.messagebox
+from loading_json import *
+from PIL import Image, ImageDraw
+
+
 
 
 def configure_grid_layout(widget, rows, columns):	
@@ -14,47 +17,6 @@ def configure_grid_layout(widget, rows, columns):
 def show_frame(frame):
     frame.tkraise()
 
-"""
-With the Planet API, I could split it all up:
-Planets:
-    Mecury
-    Venus
-    Earth
-    Mars
-    Juipter
-    Saturn
-    Uranus
-    Neptune
-
-Dwarf Planets
-    Pluto
-    Ceres
-    Haumea
-    Eris
-
-Natural Satellites
-    Moon (Earth)
-    Europa, Ganymede, Io, Callisto (Jupiter)
-    Titan, Enceladus (Saturn)
-    Triton (Neptune)
-
-Minor Bodies
-    Asteroids
-    Comets
-    Meteoroids
-    
-Deep Sky Objects:
-    Stars
-    Star Clusters
-    Nebulae
-    Galaxies
-
-Artifical Objects(Satellites)
-    ISS
-    Prominent Satellites
-    Search By Name
-
-"""
 def show_menu_frame(container):
 
     #Setting Up Frame
@@ -71,6 +33,16 @@ def show_menu_frame(container):
 
     ##Loading the ephemeris (positions), ts
     eph,ts = load_planetary_data()
+
+    #Buttons to allow the user to pick between different types of objects
+    my_image = ctk.CTkImage(light_image=Image.open("Images\saturn-farewell-pia21345.jpg"),
+                            dark_image=Image.open("Images\saturn-farewell-pia21345.jpg"),
+                            size=(800,300))
+    image_label = ctk.CTkLabel(main_frame, image=my_image, text="") 
+    image_label.grid(row=2, column=3)
+
+    view_planets=ctk.CTkButton(main_frame,text="Planets", command=lambda: show_settings_frame(container))
+    view_planets.grid(row=3, column=3)
 
     # All planet_api Buttons
 
@@ -134,15 +106,6 @@ def show_settings_frame(container):
                 new_config[key]=entry.get()
         save_json("config.json",new_config)
 
-
-def 
-    
-        
-        
-
-
-
-
 def create_ui():
          
     ctk.set_appearance_mode("dark")
@@ -163,3 +126,65 @@ def create_ui():
     show_menu_frame(container)
 
     root.mainloop()
+
+"""
+With the Planet API, I could split it all up:
+Planets:
+    Mecury
+    Venus
+    Earth
+    Mars
+    Juipter
+    Saturn
+    Uranus
+    Neptune
+
+Dwarf Planets
+    Pluto
+    Ceres
+    Haumea
+    Eris
+
+Natural Satellites
+    Moon (Earth)
+    Europa, Ganymede, Io, Callisto (Jupiter)
+    Titan, Enceladus (Saturn)
+    Triton (Neptune)
+
+Minor Bodies
+    Asteroids
+    Comets
+    Meteoroids
+    
+Deep Sky Objects:
+    Stars
+    Star Clusters
+    Nebulae
+    Galaxies
+
+Artifical Objects(Satellites)
+    ISS
+    Prominent Satellites
+    Search By Name
+
+"""
+
+#Planet Section
+def planets_ui(container):
+    return NotImplementedError
+
+#Dwarf Planets
+def dwarf_planets_ui(container):
+    return NotImplementedError
+
+#Natural Satellites
+def natural_sats_ui(container):
+    return NotImplementedError
+
+#Deep Sky Objects
+def dwarf_deep_sky_ui(container):
+    return NotImplementedError
+
+#Artifical Objects
+def artifical_obj_ui(container):
+    return NotImplementedError
