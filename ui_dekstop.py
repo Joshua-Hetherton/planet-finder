@@ -183,7 +183,18 @@ Planets:
     Uranus
     Neptune
     """
-    return NotImplementedError
+    #Setting Up Frame
+    planet_frame = ctk.CTkFrame(container, width=800, height=600, fg_color="blue")
+    planet_frame.grid(row=0, column=0, sticky="nsew")
+
+
+    configure_grid_layout(planet_frame, 50, 20)
+    show_frame(planet_frame)
+
+    #Return to Menu
+    return_to_main = ctk.CTkButton(planet_frame, text="Return to Menu", command=lambda: show_menu_frame(container))
+    return_to_main.grid(row=10,column=0,stick="w")
+
 
 #Dwarf Planets
 def dwarf_planets_ui(container):
@@ -194,7 +205,18 @@ Dwarf Planets:
     Haumea
     Eris
     """
-    return NotImplementedError
+    #Setting Up Frame
+    dwarf_planet_frame = ctk.CTkFrame(container, width=800, height=600, fg_color="grey")
+    dwarf_planet_frame.grid(row=0, column=0, sticky="nsew")
+
+
+    configure_grid_layout(dwarf_planet_frame, 50, 20)
+    show_frame(dwarf_planet_frame)
+
+    #Return to Menu
+    return_to_main = ctk.CTkButton(dwarf_planet_frame, text="Return to Menu", command=lambda: show_menu_frame(container))
+    return_to_main.grid(row=10,column=0,stick="w")
+
 
 #Natural Satellites
 def natural_sats_ui(container):
@@ -205,7 +227,18 @@ Natural Satellites:
     Titan, Enceladus (Saturn)
     Triton (Neptune)
     """
-    return NotImplementedError
+    #Setting Up Frame
+    natural_sats_frame = ctk.CTkFrame(container, width=800, height=600, fg_color="grey")
+    natural_sats_frame.grid(row=0, column=0, sticky="nsew")
+
+
+    configure_grid_layout(natural_sats_frame, 50, 20)
+    show_frame(natural_sats_frame)
+
+    #Return to Menu
+    return_to_main = ctk.CTkButton(natural_sats_frame, text="Return to Menu", command=lambda: show_menu_frame(container))
+    return_to_main.grid(row=10,column=0,stick="w")
+
 
 #Deep Sky Objects
 def minor_bodies_ui(container):
@@ -215,7 +248,18 @@ Minor Bodies:
     Comets
     Meteoroids    
     """
-    return NotImplementedError
+    #Setting Up Frame
+    minor_bodies_frame = ctk.CTkFrame(container, width=800, height=600, fg_color="grey")
+    minor_bodies_frame.grid(row=0, column=0, sticky="nsew")
+
+
+    configure_grid_layout(minor_bodies_frame, 50, 20)
+    show_frame(minor_bodies_frame)
+
+    #Return to Menu
+    return_to_main = ctk.CTkButton(minor_bodies_frame, text="Return to Menu", command=lambda: show_menu_frame(container))
+    return_to_main.grid(row=10,column=0,stick="w")
+
 
 #Deep Sky Objects
 def deep_sky_objects_ui(container):
@@ -226,7 +270,18 @@ Deep Sky Objects:
     Nebulae
     Galaxies
     """
-    return NotImplementedError
+    #Setting Up Frame
+    deep_obj_frame = ctk.CTkFrame(container, width=800, height=600, fg_color="grey")
+    deep_obj_frame.grid(row=0, column=0, sticky="nsew")
+
+
+    configure_grid_layout(deep_obj_frame, 50, 20)
+    show_frame(deep_obj_frame)
+
+    #Return to Menu
+    return_to_main = ctk.CTkButton(deep_obj_frame, text="Return to Menu", command=lambda: show_menu_frame(container))
+    return_to_main.grid(row=10,column=0,stick="w")
+
 
 #Artifical Objects
 def artifical_obj_ui(container):
@@ -236,4 +291,14 @@ Artifical Objects(Satellites)
     Prominent Satellites
     Search By Name
     """
-    return NotImplementedError
+    #Setting Up Frame
+    artifical_obj_frame = ctk.CTkFrame(container, width=800, height=600, fg_color="grey")
+    artifical_obj_frame.grid(row=0, column=0, sticky="nsew")
+
+
+    configure_grid_layout(artifical_obj_frame, 50, 20)
+    show_frame(artifical_obj_frame)
+
+    #Return to Menu
+    return_to_main = ctk.CTkButton(artifical_obj_frame, text="Return to Menu", command=lambda: show_menu_frame(container))
+    return_to_main.grid(row=10,column=0,stick="w")
