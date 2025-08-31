@@ -17,10 +17,19 @@ def configure_grid_layout(widget, rows, columns):
 def show_frame(frame):
     frame.tkraise()
 
+def layout_picture(frame, row, col, img, pixelw, pixelh):
+
+    object_picture=ctk.CTkImage(light_image=Image.open(img),
+                            dark_image=Image.open(img),
+                            size=(pixelw, pixelh))
+    image_label = ctk.CTkLabel(frame, image=object_picture, text="") 
+    image_label.grid(row=row, column=col)
+
+
 def show_menu_frame(container):
 
     #Setting Up Frame
-    main_frame = ctk.CTkFrame(container, width=800, height=600)
+    main_frame = ctk.CTkScrollableFrame(container, width=800, height=600)
     main_frame.grid(row=0,column=0, sticky="nsew")
 
     configure_grid_layout(main_frame, 10, 10)
@@ -32,18 +41,47 @@ def show_menu_frame(container):
 
 
     ##Loading the ephemeris (positions), ts
-    eph,ts = load_planetary_data()
+    eph, ts = load_planetary_data()
 
     #Buttons to allow the user to pick between different types of objects
-    my_image = ctk.CTkImage(light_image=Image.open("Images\saturn-farewell-pia21345.jpg"),
-                            dark_image=Image.open("Images\saturn-farewell-pia21345.jpg"),
-                            size=(800,300))
-    image_label = ctk.CTkLabel(main_frame, image=my_image, text="") 
-    image_label.grid(row=2, column=3)
-
-    view_planets=ctk.CTkButton(main_frame,text="Planets", command=lambda: show_settings_frame(container))
+    
+    """
+    Layout_picture takes arguements:
+    frame:      What frame it is to appear in
+    row:        Row to position the picture
+    col:        Column to position the picture
+    img path:   Path of the Image Needed
+    pixelw:     Desired Pixel Width
+    pixelh:     Desired Pixel Height
+    """
+    #Planets
+    layout_picture(main_frame, 2, 3, r"Images\saturn-farewell-pia21345.jpg", 800, 400)
+    view_planets=ctk.CTkButton(main_frame,text="Planets", command=lambda: planets_ui(container))
     view_planets.grid(row=3, column=3)
 
+    #Dwarf Planets
+    layout_picture(main_frame, 5, 3, r"Images\pluto_enhanced.png", 400, 400)
+    view_dwarf_planets=ctk.CTkButton(main_frame,text="Dwarf Planets", command=lambda: dwarf_planets_ui(container))
+    view_dwarf_planets.grid(row=6, column=3)
+
+    #Natural Satellites (Moons)
+    layout_picture(main_frame, 8, 3, r"Images\Moon.jpg", 400, 400)
+    view_natural_sats=ctk.CTkButton(main_frame,text="Natural Satellites", command=lambda: natural_sats_ui(container))
+    view_natural_sats.grid(row=9, column=3)
+
+    #Minor Bodies
+    layout_picture(main_frame, 11, 3, r"Images\asteroid_Psyche.jpg", 600, 400)
+    view_natural_sats=ctk.CTkButton(main_frame,text="Minor Bodies", command=lambda: minor_bodies_ui(container))
+    view_natural_sats.grid(row=12, column=3)
+    #Deep Sky Objects
+    layout_picture(main_frame, 14, 3, r"Images\Crab_Nebula.jpg", 400, 400)
+    view_natural_sats=ctk.CTkButton(main_frame,text="Deep Sky Objects", command=lambda: deep_sky_objects_ui(container))
+    view_natural_sats.grid(row=15, column=3)
+
+    #Artifical Objects
+    layout_picture(main_frame, 17, 3, r"Images\Hubble.jpg", 600, 400)
+    view_natural_sats=ctk.CTkButton(main_frame,text="Artifical Objects", command=lambda: artifical_obj_ui(container))
+    view_natural_sats.grid(row=18, column=3)
     # All planet_api Buttons
 
 def save_settings():
@@ -129,6 +167,12 @@ def create_ui():
 
 """
 With the Planet API, I could split it all up:
+
+"""
+
+#Planet Section
+def planets_ui(container):
+    """
 Planets:
     Mecury
     Venus
@@ -138,53 +182,58 @@ Planets:
     Saturn
     Uranus
     Neptune
+    """
+    return NotImplementedError
 
-Dwarf Planets
+#Dwarf Planets
+def dwarf_planets_ui(container):
+    """
+Dwarf Planets:
     Pluto
     Ceres
     Haumea
     Eris
+    """
+    return NotImplementedError
 
-Natural Satellites
+#Natural Satellites
+def natural_sats_ui(container):
+    """
+Natural Satellites:
     Moon (Earth)
     Europa, Ganymede, Io, Callisto (Jupiter)
     Titan, Enceladus (Saturn)
     Triton (Neptune)
+    """
+    return NotImplementedError
 
-Minor Bodies
+#Deep Sky Objects
+def minor_bodies_ui(container):
+    """
+Minor Bodies:
     Asteroids
     Comets
-    Meteoroids
-    
+    Meteoroids    
+    """
+    return NotImplementedError
+
+#Deep Sky Objects
+def deep_sky_objects_ui(container):
+    """
 Deep Sky Objects:
     Stars
     Star Clusters
     Nebulae
     Galaxies
-
-Artifical Objects(Satellites)
-    ISS
-    Prominent Satellites
-    Search By Name
-
-"""
-
-#Planet Section
-def planets_ui(container):
-    return NotImplementedError
-
-#Dwarf Planets
-def dwarf_planets_ui(container):
-    return NotImplementedError
-
-#Natural Satellites
-def natural_sats_ui(container):
-    return NotImplementedError
-
-#Deep Sky Objects
-def dwarf_deep_sky_ui(container):
+    """
     return NotImplementedError
 
 #Artifical Objects
 def artifical_obj_ui(container):
+    """
+Artifical Objects(Satellites)
+    ISS
+    Prominent Satellites
+    Search By Name
+    """
     return NotImplementedError
