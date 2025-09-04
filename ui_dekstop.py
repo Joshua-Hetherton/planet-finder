@@ -184,7 +184,7 @@ Planets:
     Neptune
     """
     #Setting Up Frame
-    planet_frame = ctk.CTkFrame(container, width=800, height=600, fg_color="blue")
+    planet_frame = ctk.CTkFrame(container, width=800, height=600)
     planet_frame.grid(row=0, column=0, sticky="nsew")
 
 
@@ -196,6 +196,9 @@ Planets:
     return_to_main.grid(row=10,column=0,stick="w")
 
 
+    #API UI
+    available_objects=["Mecury", "Venus", "Earth", "Mars", "Juipter", "Saturn", "Uranus", "Neptune"]
+
 #Dwarf Planets
 def dwarf_planets_ui(container):
     """
@@ -206,7 +209,7 @@ Dwarf Planets:
     Eris
     """
     #Setting Up Frame
-    dwarf_planet_frame = ctk.CTkFrame(container, width=800, height=600, fg_color="grey")
+    dwarf_planet_frame = ctk.CTkFrame(container, width=800, height=600)
     dwarf_planet_frame.grid(row=0, column=0, sticky="nsew")
 
 
@@ -217,6 +220,8 @@ Dwarf Planets:
     return_to_main = ctk.CTkButton(dwarf_planet_frame, text="Return to Menu", command=lambda: show_menu_frame(container))
     return_to_main.grid(row=10,column=0,stick="w")
 
+    #API UI
+    available_objects=["Mecury", "Venus", "Earth", "Mars", "Juipter", "Saturn", "Uranus", "Neptune"]
 
 #Natural Satellites
 def natural_sats_ui(container):
@@ -228,7 +233,7 @@ Natural Satellites:
     Triton (Neptune)
     """
     #Setting Up Frame
-    natural_sats_frame = ctk.CTkFrame(container, width=800, height=600, fg_color="grey")
+    natural_sats_frame = ctk.CTkFrame(container, width=800, height=600)
     natural_sats_frame.grid(row=0, column=0, sticky="nsew")
 
 
@@ -238,6 +243,9 @@ Natural Satellites:
     #Return to Menu
     return_to_main = ctk.CTkButton(natural_sats_frame, text="Return to Menu", command=lambda: show_menu_frame(container))
     return_to_main.grid(row=10,column=0,stick="w")
+
+    #API UI
+    available_objects=["Mecury", "Venus", "Earth", "Mars", "Juipter", "Saturn", "Uranus", "Neptune"]
 
 
 #Deep Sky Objects
@@ -249,7 +257,7 @@ Minor Bodies:
     Meteoroids    
     """
     #Setting Up Frame
-    minor_bodies_frame = ctk.CTkFrame(container, width=800, height=600, fg_color="grey")
+    minor_bodies_frame = ctk.CTkFrame(container, width=800, height=600)
     minor_bodies_frame.grid(row=0, column=0, sticky="nsew")
 
 
@@ -271,7 +279,7 @@ Deep Sky Objects:
     Galaxies
     """
     #Setting Up Frame
-    deep_obj_frame = ctk.CTkFrame(container, width=800, height=600, fg_color="grey")
+    deep_obj_frame = ctk.CTkFrame(container, width=800, height=600)
     deep_obj_frame.grid(row=0, column=0, sticky="nsew")
 
 
@@ -281,6 +289,9 @@ Deep Sky Objects:
     #Return to Menu
     return_to_main = ctk.CTkButton(deep_obj_frame, text="Return to Menu", command=lambda: show_menu_frame(container))
     return_to_main.grid(row=10,column=0,stick="w")
+
+    #API UI
+    available_objects=["Mecury", "Venus", "Earth", "Mars", "Juipter", "Saturn", "Uranus", "Neptune"]
 
 
 #Artifical Objects
@@ -292,7 +303,7 @@ Artifical Objects(Satellites)
     Search By Name
     """
     #Setting Up Frame
-    artifical_obj_frame = ctk.CTkFrame(container, width=800, height=600, fg_color="grey")
+    artifical_obj_frame = ctk.CTkFrame(container, width=800, height=600)
     artifical_obj_frame.grid(row=0, column=0, sticky="nsew")
 
 
@@ -302,3 +313,6 @@ Artifical Objects(Satellites)
     #Return to Menu
     return_to_main = ctk.CTkButton(artifical_obj_frame, text="Return to Menu", command=lambda: show_menu_frame(container))
     return_to_main.grid(row=10,column=0,stick="w")
+
+    #API UI
+    available_objects=["Mecury", "Venus", "Earth", "Mars", "Juipter", "Saturn", "Uranus", "Neptune"]

@@ -2,6 +2,7 @@ from skyfield.api import *
 from skyfield import *
 from skyfield import almanac
 from skyfield.magnitudelib import planetary_magnitude
+from skyfield.data import mpc, hipparcos
 
 from datetime import timedelta
 
@@ -126,5 +127,40 @@ def load_planetary_data():
     
     return eph, ts
 
+def load_minor_bodies():
+    """
+    Loads a selection of minor boides from the Minor Planet Center
+
+    Contains all orbital elements of the minor planets
+    """
+    with load.open(mpc.MINOR_PLANET_URL) as f:
+        minor_bodies= mpc.load_mpcorb_dataframe(f)
+    
+    return minor_bodies
+
+def load_stars_data():
+    """
+    Loads the Hipparcos Catalog of stars
+
+    Returns the:
+    DataFrame(Position, magnitude, and other properties of the stars)
+    """
+    with load.open(hipparcos.URL) as f:
+        stars = hipparcos.load_dataframe(f)
+    
+    return stars
+
+def load_artifical_data():
+    """
+    Loads all data from Celestrak
+
+    Returns a dictionary of names
+    """
+
+    url = 'https://celestrak.com/NORAD/elements/active.txt'
+
+    satellites = load.tle_file(url)
+
+    return {sat.name: sat for sat in satellites}
 
 
